@@ -1,0 +1,404 @@
+/* ==========================================================================
+   1. VARIABLES Y ESTILOS GENERALES
+   ========================================================================== */
+:root {
+    --primary-color: #2a6f97;    /* Azul tecnológico/educativo */
+    --secondary-color: #a9d6e5;  /* Celeste suave */
+    --accent-color: #ffb703;     /* Naranja/Amarillo creativo */
+    --dark-color: #014f86;
+    --text-color: #2b2d42;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+/* ==========================================================================
+   2. COMPONENTES REUTILIZABLES (Navegación, Botones, Secciones)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--primary-color);
+}
+
+.nav-links li a.active {
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #000;
+    padding: 0.75rem 2rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    background-color: #e5a900;
+    cursor: pointer;
+}
+
+.section {
+    padding: 5rem 10%;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: var(--dark-color);
+    position: relative;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.page-content {
+    min-height: 80vh;
+}
+
+footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   3. ESTRUCTURAS ESPECÍFICAS DE PÁGINAS
+   ========================================================================== */
+
+/* --- INICIO (Hero Section) --- */
+.hero {
+    background: linear-gradient(135deg, rgba(42, 111, 151, 0.9), rgba(1, 79, 134, 0.9)), url('https://unsplash.com') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- SOBRE MÍ --- */
+.profile-container, .about-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: #4a4e69;
+}
+
+/* --- ESTUDIOS (Línea de tiempo - estudios.html) --- */
+.academic-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 2rem;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: calc(-2rem - 22px);
+    top: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--white);
+    font-size: 0.9rem;
+}
+
+.timeline-body {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.academic-date {
+    display: inline-block;
+    background: var(--accent-color);
+    color: #000;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 15px;
+    margin: 0.5rem 0 1rem 0;
+}
+
+/* --- PROYECTOS (Tarjetas de Redes - proyectos.html) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.project-info {
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.project-badge {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.project-info h3 {
+    font-size: 1.6rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.project-info p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.15);
+    filter: brightness(1.1);
+}
+
+.facebook { background-color: #1877f2; }
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.tiktok { background-color: #000000; }
+
+/* --- CONTACTO (Formulario y Datos - contacto.html) --- */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-details-box {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 3rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-details-box h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+}
+
+.contact-details-box p {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.contact-details-box i {
+    margin-right: 15px;
+    color: var(--accent-color);
+}
+
+.contact-form-box {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(42, 111, 151, 0.3);
+}
+
+.contact-form .btn {
+    width: 100%;
+}
+
+/* ==========================================================================
+   4. RESPONSIVE DESIGN (Pantallas móviles)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .section {
+        padding: 3rem 5%;
+    }
+    
+    .academic-timeline {
+        padding-left: 1.5rem;
+    }
+}
